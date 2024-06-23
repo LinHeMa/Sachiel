@@ -3318,6 +3318,9 @@ export type GetMemberProfileQuery = {
         commentCount?: number | null
         createdAt?: any | null
         pickCount?: number | null
+        paywall?: boolean | null
+        full_screen_ad?: string | null
+        published_date?: any | null
         source?: {
           __typename?: 'Publisher'
           title?: string | null
@@ -3330,13 +3333,12 @@ export type GetMemberProfileQuery = {
         }> | null
         pick?: Array<{
           __typename?: 'Pick'
+          createdAt?: any | null
           member?: {
             __typename?: 'Member'
+            id: string
+            name?: string | null
             avatar?: string | null
-            avatar_image?: {
-              __typename?: 'Photo'
-              urlOriginal?: string | null
-            } | null
           } | null
         }> | null
         comment?: Array<{
@@ -4429,34 +4431,27 @@ export const GetMemberProfileDocument = {
                                 selections: [
                                   {
                                     kind: 'Field',
+                                    name: { kind: 'Name', value: 'createdAt' },
+                                  },
+                                  {
+                                    kind: 'Field',
                                     name: { kind: 'Name', value: 'member' },
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'avatar',
-                                          },
+                                          name: { kind: 'Name', value: 'id' },
+                                        },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'name' },
                                         },
                                         {
                                           kind: 'Field',
                                           name: {
                                             kind: 'Name',
-                                            value: 'avatar_image',
-                                          },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: {
-                                                  kind: 'Name',
-                                                  value: 'urlOriginal',
-                                                },
-                                              },
-                                            ],
+                                            value: 'avatar',
                                           },
                                         },
                                       ],
@@ -4468,6 +4463,22 @@ export const GetMemberProfileDocument = {
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'pickCount' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'commentCount' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'paywall' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'full_screen_ad' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'published_date' },
                             },
                             {
                               kind: 'Field',
